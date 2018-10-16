@@ -20,3 +20,16 @@ after_success:
   - docker push mrcbo/multi-nginx
   - docker push mrcbo/multi-server
   - docker push mrcbo/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: foobars
+  env: Foobars-env
+  bucket_name: elasticbeanstalk-us-east-1-711552313519
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
