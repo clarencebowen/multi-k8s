@@ -20,6 +20,7 @@ class Fib extends Component {
 
   async fetchIndexes() {
     const seenIndexes = await axios.get('/api/values/all');
+    if (!Array.isArray(seenIndexes.data)) return;
     this.setState({
       seenIndexes: seenIndexes.data
     });
